@@ -1,12 +1,21 @@
 import axios from 'axios';
 import PostForm from '../PostForm/PostForm';
 
-function PostList({ posts, addPost, deletePost }) {
+function PostList({ posts, addPost, deletePost, update }) {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete();
+      const response = await axios.delete(`routes/api/posts/${id}`);
       deletePost(id);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  const handleEdit = async (id) => {
+    try {
+      const response = await axios.put(`routes/api/posts/${id}`);
+      update(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -21,7 +30,7 @@ function PostList({ posts, addPost, deletePost }) {
           <p>{post.body}</p>
           <p>By {post.author}</p>
           <button onClick={() => handleDelete(post.id)}>Delete</button>
-          <button>Edit</button>
+          <button onClick={() => handleEdit(post.id)}>Edit</button>
         </div>
       ))}
     </div>

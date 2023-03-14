@@ -5,7 +5,7 @@ function PostList({ posts, addPost, deletePost, update }) {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`routes/api/posts/${id}`);
+      const response = await axios.delete(`/api/posts/${id}`);
       deletePost(id);
     } catch (error) {
       console.error(error);
@@ -14,12 +14,13 @@ function PostList({ posts, addPost, deletePost, update }) {
   
   const handleEdit = async (id) => {
     try {
-      const response = await axios.put(`routes/api/posts/${id}`);
+      const response = await axios.put(`/api/posts/${id}`);
       update(response.data);
     } catch (error) {
       console.error(error);
     }
   };
+  
 
   return (
     <div>

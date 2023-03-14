@@ -1,15 +1,12 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const forumsSchema = new Schema({
-    name: String,
-    description: String,
-    posts: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Post'
-        }
-    ]
+const forumSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  }
 });
 
-module.exports = mongoose.model('Forums', forumsSchema);
+const Category = mongoose.model('Forum', forumSchema);
+
+module.exports = Forum;

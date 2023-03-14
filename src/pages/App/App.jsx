@@ -11,31 +11,28 @@ import PostForm from '../../components/PostForm/PostForm';
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [posts, setPosts] = useState([]);
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
 
   useEffect(() => {
-    axios.get('/posts').then((response) => {
+    axios.get('/api/posts').then((response) => {
+      console.log(response.data)
       setPosts(response.data);
     });
   }, []);
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
+  function addPost(post) {
+    setPosts([...posts, post])
+  }
 
-  const handleBodyChange = (e) => {
-    setBody(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post('/posts', { title, body }).then((response) => {
-      setPosts([...posts, response.data]);
-      setTitle('');
-      setBody('');
-    });
-  };
+  function PostDelete({ id }) {
+    function handleDelete() {
+      axios.delete(`/api/posts/${id}`).then((response) => {
+        setPosts(posts.filter((post) => post._id !== id));
+      });
+    }
+    return (
+      <button onClick={handleDelete}>Delete</button>
+    );
+  }
 
   return (
     <main className="App">
@@ -43,11 +40,9 @@ export default function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/" element={<PostList posts={posts} />} />
-            <Route
-              path="/create"
-              element={<PostForm title={title} body={body} onSubmit={handleSubmit} onTitleChange={handleTitleChange} onBodyChange={handleBodyChange} />}
-            />
+            <Route path="/" element={<PostList posts={posts} addPost={addPost} />} />
+            <Route path="/posts/:id/edit" element={<PostForm  />} />
+            <Route path="/posts/:id/delete" element={<PostDelete />} />
           </Routes>
         </>
       ) : (

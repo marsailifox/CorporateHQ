@@ -2,15 +2,12 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
-
-
 export default function PostEditForm({ post, editPost,}) {
   const [title, setTitle] = useState(post.title);
   const [content, setContent] = useState(post.content);
   const [updatedPost, setUpdatedPost] = useState({
     title: "",
     content: ""
-
   })
 const {id} = useParams()
 const navigate = useNavigate()
@@ -27,8 +24,6 @@ const navigate = useNavigate()
   function handleChange(evt) {
     setUpdatedPost({...updatedPost, [evt.target.name]: evt.target.value})
   }
-
-  
 
   return (
     <form onSubmit={handleEdit}>
@@ -55,4 +50,3 @@ const navigate = useNavigate()
     </form>
   );
 }
-

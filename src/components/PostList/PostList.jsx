@@ -3,8 +3,6 @@ import PostForm from '../PostForm/PostForm';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
-
-
 function PostList({ posts, addPost, deletePost, setPosts }) {
   useEffect(() => {
     axios.get('/api/posts').then((response) => {
@@ -17,14 +15,6 @@ function PostList({ posts, addPost, deletePost, setPosts }) {
     try {
       const response = await axios.delete(`/api/posts/${id}`);
       deletePost(id)
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  
-  const handleEdit = async (id, updatedPost) => {
-    try {
-      const response = await axios.put(`/api/posts/${id}`, updatedPost);
     } catch (error) {
       console.error(error);
     }

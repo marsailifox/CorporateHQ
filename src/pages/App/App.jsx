@@ -54,6 +54,7 @@ export default function App() {
     <main className="App">
       {user ? (
         <>
+        <h1>Corporate HQ</h1>
           <NavBar user={user} setUser={setUser} />
           <Routes>
             <Route path="/" element={<PostList posts={posts} addPost={addPost} deletePost={deletePost} editPost={editPost} setPosts={setPosts} />} />

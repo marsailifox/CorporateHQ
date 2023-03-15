@@ -10,8 +10,6 @@ export default function NavBar({ user, setUser }) {
 
     return (
         <nav>
-            <Link to="/forums">Public Forums</Link>
-            &nbsp; | &nbsp;
             &nbsp;&nbsp; Welcome, {user.name}
             &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
         </nav>

@@ -21,7 +21,7 @@ https://i.imgur.com/g2DhwO8.png
 https://i.imgur.com/h9k09Mq.png
 
 Icebox Features:
-User profile pages
-Image and video uploading
-User signatures
+User profile pages,
+Image and video uploading,
+User signatures,
 Forum Categories

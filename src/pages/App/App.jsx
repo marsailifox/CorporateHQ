@@ -8,7 +8,6 @@ import NavBar from '../../components/NavBar/NavBar';
 import PostList from '../../components/PostList/PostList';
 import PostEditForm from '../../components/PostEditForm/PostEditForm';
 
-
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [posts, setPosts] = useState([]);
@@ -43,13 +42,6 @@ export default function App() {
   function editPost(id, updatedPost) {
     axios.put(`/api/posts/${id}`, updatedPost)
       .then(response => {
-        //const updatedPosts = posts.map(post => {
-         // if (post._id === id) {
-         //   return response.data;
-         // } else {
-         //   return post;
-         // }
-       // });
         setPosts(response.data);
         console.log(response.data)
       })
@@ -58,7 +50,6 @@ export default function App() {
       });
   }
   
-
   return (
     <main className="App">
       {user ? (

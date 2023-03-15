@@ -1,9 +1,17 @@
 import axios from 'axios';
 import PostForm from '../PostForm/PostForm';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
-function PostList({ posts, addPost, deletePost }) {
+
+function PostList({ posts, addPost, deletePost, setPosts }) {
+  useEffect(() => {
+    axios.get('/api/posts').then((response) => {
+      console.log(response.data)
+      setPosts(response.data);
+    });
+  }, []);
 
   const handleDelete = async (id) => {
     try {

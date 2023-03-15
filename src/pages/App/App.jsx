@@ -43,14 +43,15 @@ export default function App() {
   function editPost(id, updatedPost) {
     axios.put(`/api/posts/${id}`, updatedPost)
       .then(response => {
-        const updatedPosts = posts.map(post => {
-          if (post._id === id) {
-            return response.data;
-          } else {
-            return post;
-          }
-        });
-        setPosts(updatedPosts);
+        //const updatedPosts = posts.map(post => {
+         // if (post._id === id) {
+         //   return response.data;
+         // } else {
+         //   return post;
+         // }
+       // });
+        setPosts(response.data);
+        console.log(response.data)
       })
       .catch(error => {
         console.error(error);
@@ -64,7 +65,7 @@ export default function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/" element={<PostList posts={posts} addPost={addPost} deletePost={deletePost} editPost={editPost} />} />
+            <Route path="/" element={<PostList posts={posts} addPost={addPost} deletePost={deletePost} editPost={editPost} setPosts={setPosts} />} />
             <Route path="/posts/:id/delete" element={<PostDelete />} />
             <Route path="/posts/:id/edit" element={<PostEditForm post={post} editPost={editPost} />} />
           </Routes>

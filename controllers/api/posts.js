@@ -30,7 +30,9 @@ async function index(req, res) {
 async function update(req, res) {
     try {
         const post = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true })
-        res.json(post)
+        const posts = await Post.find({})
+        res.json(posts)
+        console.log(posts)
     } catch(err) {
         console.log(err)
         res.status(400).json(err)
